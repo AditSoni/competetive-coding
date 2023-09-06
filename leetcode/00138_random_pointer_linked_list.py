@@ -22,7 +22,8 @@ class Solution:
         node = Node(head.val, None, None)
 
         self.visited[head] = node
-
+        # map the link list to next pointer and during that process update the visted dict 
+        # random pointer is simply  none or the value of the key of the old node of original list
         node.next = self.copyRandomList(head.next)
         node.random = self.copyRandomList(head.random)
 
