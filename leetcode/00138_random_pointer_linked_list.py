@@ -67,4 +67,37 @@ def findNode(head,index_):
         index_new+=1
     return None
     
+### without find node 
 
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
+index_map = {}
+class Solution:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        head2 = Node(x=head.val) if head else None
+        new = head2
+        old = head
+        while head and head.next:
+            index_map[head] = head2
+            head2.next = Node(x=head.next.val)
+            head = head.next
+            head2 = head2.next
+        index_map[head] = head2
+        # start with old 
+        # find random if exists
+        head1 = new
+        while old :
+            if old.random is not None:
+                node1 = index_map[old.random]
+                new.random = node1
+            old = old.next
+            new = new.next
+        
+        return head1
+    
